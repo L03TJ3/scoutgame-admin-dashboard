@@ -1,0 +1,7 @@
+# Local environment
+.env
+
+# Node
+node_modules/
+*.log
+

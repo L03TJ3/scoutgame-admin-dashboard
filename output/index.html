@@ -1,0 +1,1100 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Scout Issues Viewer</title>
+      <style>
+    :root { --bg:#0b1220; --card:#121a2a; --text:#e6edf3; --muted:#9fb1c1; --accent:#60a5fa; --border:#20304a; --label:#1f2937; --open:#16a34a; --closed:#dc2626; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+    header { position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,18,32,0.95), rgba(11,18,32,0.7)); backdrop-filter: blur(6px); border-bottom: 1px solid var(--border); padding: 16px; z-index: 10; }
+    header h1 { margin: 0 0 6px; font-size: 20px; }
+    header .meta { display: flex; flex-wrap: wrap; gap: 12px 18px; color: var(--muted); }
+    .tabs { display: flex; gap: 8px; margin-top: 10px; }
+    .tabs button { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+    .tabs button.active { background: rgba(96,165,250,0.18); border-color: var(--accent); }
+    main { padding: 16px; max-width: 1500px; margin: 0 auto; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin: 16px 0; overflow: hidden; }
+    section h2 { margin: 0; padding: 12px 14px; font-size: 16px; background: rgba(96,165,250,0.12); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    section h2 .count { color: var(--muted); font-weight: 600; }
+    .table-wrap { overflow: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { text-align: left; padding: 10px 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tbody tr:hover { background: rgba(96,165,250,0.06); }
+    td.repo { color: var(--muted); white-space: nowrap; }
+    td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    td.title a { color: var(--text); text-decoration: none; }
+    td.title a:hover { color: var(--accent); text-decoration: underline; }
+    td.state { font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: .4px; }
+    td.state.open { color: var(--open); }
+    td.state.closed { color: var(--closed); }
+    td.state.in-review { color: var(--accent); }
+    .label { display: inline-block; padding: 3px 7px; font-size: 12px; border-radius: 999px; background: var(--label); color: var(--text); border: 1px solid var(--border); }
+    .muted { color: var(--muted); }
+    .empty { text-align: center; color: var(--muted); padding: 14px; }
+    .agg-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+    .agg-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .agg-title { font-weight: 700; margin-bottom: 6px; }
+    .agg-line { display: flex; align-items: center; justify-content: space-between; color: var(--muted); }
+    footer { text-align: center; color: var(--muted); padding: 24px 12px; }
+    .screen { display: none; }
+    .screen.active { display: block; }
+  </style>
+    </head>
+    <body>
+      
+    <header>
+      <h1>Scout-Labeled Issues</h1>
+      <div class="meta">
+        <div><strong>Org:</strong> GoodDollar</div>
+        <div><strong>Repos:</strong> 4</div>
+        <div><strong>Since:</strong> 2023-01-01</div>
+        <div><strong>Label contains:</strong> scouts</div>
+        <div><strong>Total:</strong> 25</div>
+        <div><strong>Generated:</strong> 2025-09-02T12:15:39.844Z</div>
+      </div>
+      <nav class="tabs">
+        <button data-tab="open" class="active">Open</button>
+        <button data-tab="closed">Closed</button>
+        <button data-tab="byrepo">By Repo</button>
+        <button data-tab="aggregates">Aggregates</button>
+        <button data-tab="futurescouts">Future Scouts</button>
+      </nav>
+    </header>
+      <main>
+        <div id="open" class="screen active">
+          <section><h2>Open (sorted by updated_at desc)</h2><div class="agg-wrap">
+      <div class="agg-card">
+        <div class="agg-title">Open Total</div>
+        <div class="agg-line"><span>Count</span><b>7</b></div>
+        <div class="agg-line"><span>USD</span><b>$1,450</b></div>
+        <div class="agg-line"><span>G$</span><b>14,500,000 G$</b></div>
+      </div></div></section>
+          
+      <section>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Repo</th>
+                <th>Title</th>
+                <th>IssueState</th>
+                <th>PRState</th>
+                <th>CreatedBy</th>
+                <th>Updated (day)</th>
+                <th>Bounty</th>
+                <th>Comments</th>
+                <th>PR Ref Authors</th>
+                <th>Labels</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/17" target="_blank" rel="noopener noreferrer">Add savings widget</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">7</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/593" target="_blank" rel="noopener noreferrer">[Feat] Integrate with reown appkit</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-01</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">15</td>
+        <td class="pr-authors">pbkompasz</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/231" target="_blank" rel="noopener noreferrer">Create Community Pools</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-08-28</td>
+        <td class="bounty">Mythic — $350 | 3,500,000 G$</td>
+        <td class="comments">21</td>
+        <td class="pr-authors">pbkompasz</td>
+        <td class="labels"><span class="label">Scouts Game - Mythic</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/243" target="_blank" rel="noopener noreferrer">Show network and admin fees (values) in Donation flow, collective and wallet screens</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-08-15</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">9</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/10" target="_blank" rel="noopener noreferrer">Add Farcaster support for the identity flow</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-08-11</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">5</td>
+        <td class="pr-authors">vortex-hue</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/203" target="_blank" rel="noopener noreferrer">Feat: add UI support for GoodDollar message passing bridge</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-08-06</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">18</td>
+        <td class="pr-authors">BenraouaneSoufiane, romeoscript</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/228" target="_blank" rel="noopener noreferrer">Feature: manage user tasks</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-23</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">robaribas, YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+        </div>
+        <div id="closed" class="screen">
+          <section><h2>Closed (sorted by updated_at desc)</h2><div class="agg-wrap">
+      <div class="agg-card">
+        <div class="agg-title">Closed Total</div>
+        <div class="agg-line"><span>Count</span><b>18</b></div>
+        <div class="agg-line"><span>USD</span><b>$1,300</b></div>
+        <div class="agg-line"><span>G$</span><b>13,000,000 G$</b></div>
+      </div></div></section>
+          
+      <section>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Repo</th>
+                <th>Title</th>
+                <th>IssueState</th>
+                <th>PRState</th>
+                <th>CreatedBy</th>
+                <th>Updated (day)</th>
+                <th>Bounty</th>
+                <th>Comments</th>
+                <th>PR Ref Authors</th>
+                <th>Labels</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/162" target="_blank" rel="noopener noreferrer">[UX enhancement] Update Main Page Collective tile behavior</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">4</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">enhancement</span> <span class="label">P2 - Medium</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/279" target="_blank" rel="noopener noreferrer">Make more clear what type of Collective the user is viewing </a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">5</td>
+        <td class="pr-authors">ManyRios</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/258" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Order logic off on donors page</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">alisonhawk</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span> <span class="label">UI</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/269" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] The numbers between pool recipients and stewards are different.</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">vtamara</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/275" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Stewards UI issues </a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">vtamara</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span> <span class="label">UI</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/6" target="_blank" rel="noopener noreferrer">Citizen SDK main readme doesnt direct to the claim sdk</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">7</td>
+        <td class="pr-authors">romeoscript</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span> <span class="label">documentation</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/483" target="_blank" rel="noopener noreferrer">Implement &quot;Buy G$&quot;</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">patpedrosa</td>
+        <td class="updated">2025-09-01</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">23</td>
+        <td class="pr-authors">L03TJ3</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/11" target="_blank" rel="noopener noreferrer">User should top his wallet by calling the Faucet contract itself</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-08-11</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">harjaapdhillon16</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/267" target="_blank" rel="noopener noreferrer">[Improvement, GoodCollective] The total amount on the GC home page is not right</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-07-30</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">11</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/224" target="_blank" rel="noopener noreferrer">Add Social Share after first claim</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-24</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">15</td>
+        <td class="pr-authors">vortex-hue</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/576" target="_blank" rel="noopener noreferrer">Bug: Uniswap widget shows error when high price-impact</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-14</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">10</td>
+        <td class="pr-authors">supersonicwisd1</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">P2 - Medium Priority</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/221" target="_blank" rel="noopener noreferrer">Wallet Detail - Action Summary &amp; Action Logs for stewards</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-07-14</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">10</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/227" target="_blank" rel="noopener noreferrer">Feat: support more wallets using reown</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-04-11</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/253" target="_blank" rel="noopener noreferrer">[Improvements, GoodCollective] Update the &quot;Thank you&quot; modal after donation</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">documentation</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/214" target="_blank" rel="noopener noreferrer">feat: add ability to switch networks</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/177" target="_blank" rel="noopener noreferrer">[Improvement] Replace Twitter logo for X</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">2</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">P3 - Low</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/261" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] the Collective cards should be clickable to bring the user to the respective collective.</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">metanodreamer</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/272" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Improve wallet containers to follow the design</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">2</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+        </div>
+        <div id="byrepo" class="screen">
+        <section>
+          <h2>GoodDollar/GoodSDKs <span class="count">(4)</span></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Repo</th>
+                  <th>Title</th>
+                  <th>IssueState</th>
+                  <th>PRState</th>
+                  <th>CreatedBy</th>
+                  <th>Updated (day)</th>
+                  <th>Bounty</th>
+                  <th>Comments</th>
+                  <th>PR Ref Authors</th>
+                  <th>Labels</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/17" target="_blank" rel="noopener noreferrer">Add savings widget</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">7</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/11" target="_blank" rel="noopener noreferrer">User should top his wallet by calling the Faucet contract itself</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-08-11</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">harjaapdhillon16</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/10" target="_blank" rel="noopener noreferrer">Add Farcaster support for the identity flow</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-08-11</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">5</td>
+        <td class="pr-authors">vortex-hue</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/6" target="_blank" rel="noopener noreferrer">Citizen SDK main readme doesnt direct to the claim sdk</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">7</td>
+        <td class="pr-authors">romeoscript</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span> <span class="label">documentation</span></td>
+      </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>GoodDollar/GoodProtocolUI <span class="count">(3)</span></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Repo</th>
+                  <th>Title</th>
+                  <th>IssueState</th>
+                  <th>PRState</th>
+                  <th>CreatedBy</th>
+                  <th>Updated (day)</th>
+                  <th>Bounty</th>
+                  <th>Comments</th>
+                  <th>PR Ref Authors</th>
+                  <th>Labels</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/593" target="_blank" rel="noopener noreferrer">[Feat] Integrate with reown appkit</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-01</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">15</td>
+        <td class="pr-authors">pbkompasz</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/576" target="_blank" rel="noopener noreferrer">Bug: Uniswap widget shows error when high price-impact</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-14</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">10</td>
+        <td class="pr-authors">supersonicwisd1</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">P2 - Medium Priority</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/483" target="_blank" rel="noopener noreferrer">Implement &quot;Buy G$&quot;</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">patpedrosa</td>
+        <td class="updated">2025-09-01</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">23</td>
+        <td class="pr-authors">L03TJ3</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>GoodDollar/GoodCollective <span class="count">(15)</span></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Repo</th>
+                  <th>Title</th>
+                  <th>IssueState</th>
+                  <th>PRState</th>
+                  <th>CreatedBy</th>
+                  <th>Updated (day)</th>
+                  <th>Bounty</th>
+                  <th>Comments</th>
+                  <th>PR Ref Authors</th>
+                  <th>Labels</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/279" target="_blank" rel="noopener noreferrer">Make more clear what type of Collective the user is viewing </a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">5</td>
+        <td class="pr-authors">ManyRios</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/275" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Stewards UI issues </a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">vtamara</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span> <span class="label">UI</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/272" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Improve wallet containers to follow the design</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">2</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/269" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] The numbers between pool recipients and stewards are different.</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">vtamara</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/267" target="_blank" rel="noopener noreferrer">[Improvement, GoodCollective] The total amount on the GC home page is not right</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-07-30</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">11</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/261" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] the Collective cards should be clickable to bring the user to the respective collective.</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">metanodreamer</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/258" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Order logic off on donors page</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">alisonhawk</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">Scouts Game - Common</span> <span class="label">UI</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/253" target="_blank" rel="noopener noreferrer">[Improvements, GoodCollective] Update the &quot;Thank you&quot; modal after donation</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">documentation</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/243" target="_blank" rel="noopener noreferrer">Show network and admin fees (values) in Donation flow, collective and wallet screens</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-08-15</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">9</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/231" target="_blank" rel="noopener noreferrer">Create Community Pools</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-08-28</td>
+        <td class="bounty">Mythic — $350 | 3,500,000 G$</td>
+        <td class="comments">21</td>
+        <td class="pr-authors">pbkompasz</td>
+        <td class="labels"><span class="label">Scouts Game - Mythic</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/227" target="_blank" rel="noopener noreferrer">Feat: support more wallets using reown</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-04-11</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/221" target="_blank" rel="noopener noreferrer">Wallet Detail - Action Summary &amp; Action Logs for stewards</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-07-14</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">10</td>
+        <td class="pr-authors">EmekaManuel</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/214" target="_blank" rel="noopener noreferrer">feat: add ability to switch networks</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/177" target="_blank" rel="noopener noreferrer">[Improvement] Replace Twitter logo for X</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">vldkhh</td>
+        <td class="updated">2025-03-18</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">2</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">P3 - Low</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/162" target="_blank" rel="noopener noreferrer">[UX enhancement] Update Main Page Collective tile behavior</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-09-02</td>
+        <td class="bounty">Common — $50 | 500,000 G$</td>
+        <td class="comments">4</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">enhancement</span> <span class="label">P2 - Medium</span> <span class="label">Scouts Game - Common</span></td>
+      </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>GoodDollar/GoodWeb3-Mono <span class="count">(3)</span></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Repo</th>
+                  <th>Title</th>
+                  <th>IssueState</th>
+                  <th>PRState</th>
+                  <th>CreatedBy</th>
+                  <th>Updated (day)</th>
+                  <th>Bounty</th>
+                  <th>Comments</th>
+                  <th>PR Ref Authors</th>
+                  <th>Labels</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/203" target="_blank" rel="noopener noreferrer">Feat: add UI support for GoodDollar message passing bridge</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">sirpy</td>
+        <td class="updated">2025-08-06</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">18</td>
+        <td class="pr-authors">BenraouaneSoufiane, romeoscript</td>
+        <td class="labels"><span class="label">Scouts Game - Epic</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/228" target="_blank" rel="noopener noreferrer">Feature: manage user tasks</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">open</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-23</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">6</td>
+        <td class="pr-authors">robaribas, YanVictorSN</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/224" target="_blank" rel="noopener noreferrer">Add Social Share after first claim</a></td>
+        <td class="state in-review">In Review</td>
+        <td class="pr-state">merged</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-24</td>
+        <td class="bounty">Rare — $150 | 1,500,000 G$</td>
+        <td class="comments">15</td>
+        <td class="pr-authors">vortex-hue</td>
+        <td class="labels"><span class="label">Scouts Game - Rare</span></td>
+      </tr>
+              </tbody>
+            </table>
+          </div>
+        </section></div>
+        <div id="futurescouts" class="screen">
+          <section><h2>Future Scouts Game</h2></section>
+          
+      <section>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Repo</th>
+                <th>Title</th>
+                <th>IssueState</th>
+                <th>PRState</th>
+                <th>CreatedBy</th>
+                <th>Updated (day)</th>
+                <th>Bounty</th>
+                <th>Comments</th>
+                <th>PR Ref Authors</th>
+                <th>Labels</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/583" target="_blank" rel="noopener noreferrer">Feat: unify desing systems</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-08-20</td>
+        <td class="bounty">Epic — $250 | 2,500,000 G$</td>
+        <td class="comments">4</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Epic</span> <span class="label">improvement</span> <span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/222" target="_blank" rel="noopener noreferrer">Research - Bug: native-base modals not working on android app</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-05-13</td>
+        <td class="bounty">-</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">P3 - low</span> <span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/273" target="_blank" rel="noopener noreferrer">Show network and admin fees (text %) in Donation flow, collective and wallet screens</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">none</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-02-04</td>
+        <td class="bounty">-</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/221" target="_blank" rel="noopener noreferrer">Add &quot;refresh&quot; button in GoodID in Profile so that people can retry the segmentation </a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">none</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2024-12-27</td>
+        <td class="bounty">-</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/575" target="_blank" rel="noopener noreferrer">Add NGW as featured wallet in Walletconnect</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">none</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-02-10</td>
+        <td class="bounty">-</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/227" target="_blank" rel="noopener noreferrer">Fix sticky header on Post-claim screen (look for elsewhere, too)</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-07-09</td>
+        <td class="bounty">-</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/223" target="_blank" rel="noopener noreferrer">Loading state for GoodCollective</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-08-15</td>
+        <td class="bounty">-</td>
+        <td class="comments">1</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/556" target="_blank" rel="noopener noreferrer">[GoodID]: handle next task with posthog</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-01-03</td>
+        <td class="bounty">-</td>
+        <td class="comments">2</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">P2 - Medium Priority</span> <span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/186" target="_blank" rel="noopener noreferrer">[Enhancement] Share Donation on Twitter / X</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2024-12-27</td>
+        <td class="bounty">-</td>
+        <td class="comments">3</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/181" target="_blank" rel="noopener noreferrer">[UX Enhancement] Make clear the dApp only works on Celo</a></td>
+        <td class="state closed">closed</td>
+        <td class="pr-state">merged</td>
+        <td class="author">decentralauren</td>
+        <td class="updated">2025-02-03</td>
+        <td class="bounty">-</td>
+        <td class="comments">5</td>
+        <td class="pr-authors">YanVictorSN</td>
+        <td class="labels"><span class="label">enhancement</span> <span class="label">P3 - Low</span> <span class="label">Future Scouts Game</span></td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/392" target="_blank" rel="noopener noreferrer">Bug: Tailwind stylesheets overrides microbridge design</a></td>
+        <td class="state open">open</td>
+        <td class="pr-state">none</td>
+        <td class="author">L03TJ3</td>
+        <td class="updated">2025-01-03</td>
+        <td class="bounty">-</td>
+        <td class="comments">4</td>
+        <td class="pr-authors">-</td>
+        <td class="labels"><span class="label">bug</span> <span class="label">UI</span> <span class="label">Future Scouts Game</span></td>
+      </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+        </div>
+        <div id="aggregates" class="screen">
+    <section>
+      <h2>Aggregates by Repo</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Repo</th>
+              <th>Open Count</th>
+              <th>Open USD</th>
+              <th>Open G$</th>
+              <th>Closed Count</th>
+              <th>Closed USD</th>
+              <th>Closed G$</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                  <tr>
+                    <td class="repo">GoodDollar/GoodSDKs</td>
+                    <td>2</td>
+                    <td>$300</td>
+                    <td>3,000,000 G$</td>
+                    <td>2</td>
+                    <td>$100</td>
+                    <td>1,000,000 G$</td>
+                  </tr>
+                  <tr>
+                    <td class="repo">GoodDollar/GoodProtocolUI</td>
+                    <td>1</td>
+                    <td>$250</td>
+                    <td>2,500,000 G$</td>
+                    <td>2</td>
+                    <td>$200</td>
+                    <td>2,000,000 G$</td>
+                  </tr>
+                  <tr>
+                    <td class="repo">GoodDollar/GoodCollective</td>
+                    <td>2</td>
+                    <td>$500</td>
+                    <td>5,000,000 G$</td>
+                    <td>13</td>
+                    <td>$850</td>
+                    <td>8,500,000 G$</td>
+                  </tr>
+                  <tr>
+                    <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+                    <td>2</td>
+                    <td>$400</td>
+                    <td>4,000,000 G$</td>
+                    <td>1</td>
+                    <td>$150</td>
+                    <td>1,500,000 G$</td>
+                  </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="agg-wrap">
+        
+      <div class="agg-card">
+        <div class="agg-title">Open Total</div>
+        <div class="agg-line"><span>Count</span><b>7</b></div>
+        <div class="agg-line"><span>USD</span><b>$1,450</b></div>
+        <div class="agg-line"><span>G$</span><b>14,500,000 G$</b></div>
+      </div>
+        
+      <div class="agg-card">
+        <div class="agg-title">Closed Total</div>
+        <div class="agg-line"><span>Count</span><b>18</b></div>
+        <div class="agg-line"><span>USD</span><b>$1,300</b></div>
+        <div class="agg-line"><span>G$</span><b>13,000,000 G$</b></div>
+      </div>
+      </div>
+    </section></div>
+      </main>
+      <footer>Generated from GitHub Search API • 9/2/2025, 7:15:39 PM</footer>
+      <script>
+    const tabs = document.querySelectorAll('nav.tabs button');
+    const screens = document.querySelectorAll('.screen');
+    tabs.forEach(btn => btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.getAttribute('data-tab');
+      screens.forEach(sc => sc.classList.toggle('active', sc.id === target));
+    }));
+  </script>
+    </body>
+  </html>
