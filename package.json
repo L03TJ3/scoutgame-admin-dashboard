@@ -5,7 +5,7 @@
   "main": "scoutgame_github_data.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "find:scout": "node scoutgame_github_data.js --since 2023-01-01 --label scout",
+    "find:scout": "node scoutgame_github_data.js --since 2023-01-01 --label scouts",
     "build:scout": "node scoutgame_github_data.js --since 2023-01-01 --label scouts --out output"
   },
   "keywords": [],
