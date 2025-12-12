@@ -2,117 +2,61 @@
   "query": "repo:GoodDollar/GoodCollective repo:GoodDollar/GoodSDKs repo:GoodDollar/GoodProtocolUI repo:GoodDollar/GoodWeb3-Mono is:issue created:>=2023-01-01",
   "since": "2023-01-01",
   "labelContains": "scouts",
-  "total": 25,
-  "generated_at": "2025-10-01T08:09:26.447Z",
+  "total": 31,
+  "generated_at": "2025-12-12T09:38:18.265Z",
   "byRepo": {
-    "GoodDollar/GoodSDKs": [
-      {
-        "repo": "GoodDollar/GoodSDKs",
-        "number": 17,
-        "title": "Add savings widget",
-        "state": "open",
-        "author": "L03TJ3",
-        "labels": [
-          "Scouts Game - Epic"
-        ],
-        "created_at": "2025-08-26T17:37:26Z",
-        "updated_at": "2025-09-17T14:44:07Z",
-        "url": "https://github.com/GoodDollar/GoodSDKs/issues/17",
-        "bounty": {
-          "tier": "epic",
-          "usd": 250,
-          "g": 2500000
-        },
-        "labelAddedAt": "2025-08-26T17:38:41Z",
-        "labelAddedBy": "L03TJ3",
-        "commentsCount": 7,
-        "lastCommentAt": "2025-09-01T17:53:08Z",
-        "prRefAuthors": [
-          "kadiray34"
-        ],
-        "prState": "merged"
-      },
-      {
-        "repo": "GoodDollar/GoodSDKs",
-        "number": 11,
-        "title": "User should top his wallet by calling the Faucet contract itself",
-        "state": "open",
-        "author": "sirpy",
-        "labels": [
-          "Scouts Game - Common"
-        ],
-        "created_at": "2025-07-31T14:06:56Z",
-        "updated_at": "2025-08-11T07:16:47Z",
-        "url": "https://github.com/GoodDollar/GoodSDKs/issues/11",
-        "bounty": {
-          "tier": "common",
-          "usd": 50,
-          "g": 500000
-        },
-        "labelAddedAt": "2025-08-07T07:16:04Z",
-        "labelAddedBy": "L03TJ3",
-        "commentsCount": 1,
-        "lastCommentAt": "2025-08-11T07:13:09Z",
-        "prRefAuthors": [
-          "harjaapdhillon16"
-        ],
-        "prState": "merged"
-      },
-      {
-        "repo": "GoodDollar/GoodSDKs",
-        "number": 10,
-        "title": "Add Farcaster support for the identity flow",
-        "state": "open",
-        "author": "L03TJ3",
-        "labels": [
-          "Scouts Game - Common"
-        ],
-        "created_at": "2025-07-30T12:12:30Z",
-        "updated_at": "2025-08-11T07:07:00Z",
-        "url": "https://github.com/GoodDollar/GoodSDKs/issues/10",
-        "bounty": {
-          "tier": "common",
-          "usd": 50,
-          "g": 500000
-        },
-        "labelAddedAt": "2025-07-30T15:48:17Z",
-        "labelAddedBy": "L03TJ3",
-        "commentsCount": 5,
-        "lastCommentAt": "2025-08-11T07:07:00Z",
-        "prRefAuthors": [
-          "vortex-hue"
-        ],
-        "prState": "open"
-      },
-      {
-        "repo": "GoodDollar/GoodSDKs",
-        "number": 6,
-        "title": "Citizen SDK main readme doesnt direct to the claim sdk",
-        "state": "closed",
-        "author": "sirpy",
-        "labels": [
-          "Scouts Game - Common",
-          "documentation"
-        ],
-        "created_at": "2025-07-01T14:50:41Z",
-        "updated_at": "2025-09-02T09:04:36Z",
-        "url": "https://github.com/GoodDollar/GoodSDKs/issues/6",
-        "bounty": {
-          "tier": "common",
-          "usd": 50,
-          "g": 500000
-        },
-        "labelAddedAt": "2025-07-01T14:50:42Z",
-        "labelAddedBy": "sirpy",
-        "commentsCount": 7,
-        "lastCommentAt": "2025-08-07T07:17:07Z",
-        "prRefAuthors": [
-          "romeoscript"
-        ],
-        "prState": "merged"
-      }
-    ],
     "GoodDollar/GoodProtocolUI": [
+      {
+        "repo": "GoodDollar/GoodProtocolUI",
+        "number": 614,
+        "title": "Bug: claim button appears clickable while loading claim data",
+        "state": "open",
+        "author": "sirpy",
+        "labels": [
+          "bug",
+          "good first issue",
+          "Scouts Game - Common"
+        ],
+        "created_at": "2025-12-03T12:04:42Z",
+        "updated_at": "2025-12-03T12:04:52Z",
+        "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/614",
+        "bounty": {
+          "tier": "common",
+          "usd": 50,
+          "g": 500000
+        },
+        "labelAddedAt": "2025-12-03T12:04:44Z",
+        "labelAddedBy": "sirpy",
+        "commentsCount": 1,
+        "lastCommentAt": "2025-12-03T12:04:52Z",
+        "prRefAuthors": [],
+        "prState": "none"
+      },
+      {
+        "repo": "GoodDollar/GoodProtocolUI",
+        "number": 611,
+        "title": "Fix: Claim disabled message",
+        "state": "open",
+        "author": "L03TJ3",
+        "labels": [
+          "bug",
+          "Scouts Game - Basic"
+        ],
+        "created_at": "2025-11-04T11:22:45Z",
+        "updated_at": "2025-11-24T06:34:50Z",
+        "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/611",
+        "bounty": {
+          "tier": "basic",
+          "usd": 25,
+          "g": 250000
+        },
+        "labelAddedAt": "2025-11-04T11:23:48Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 2,
+        "lastCommentAt": "2025-11-24T06:34:30Z",
+        "prRefAuthors": [],
+        "prState": "none"
+      },
       {
         "repo": "GoodDollar/GoodProtocolUI",
         "number": 593,
@@ -199,15 +143,91 @@
     "GoodDollar/GoodCollective": [
       {
         "repo": "GoodDollar/GoodCollective",
+        "number": 308,
+        "title": "Pool Members should be able to join pools and claim their rewards",
+        "state": "closed",
+        "author": "L03TJ3",
+        "labels": [
+          "Scouts Game - Rare"
+        ],
+        "created_at": "2025-11-21T04:21:41Z",
+        "updated_at": "2025-11-27T12:26:17Z",
+        "url": "https://github.com/GoodDollar/GoodCollective/issues/308",
+        "bounty": {
+          "tier": "rare",
+          "usd": 150,
+          "g": 1500000
+        },
+        "labelAddedAt": "2025-11-21T04:21:42Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 3,
+        "lastCommentAt": "2025-11-25T20:31:16Z",
+        "prRefAuthors": [
+          "EmekaManuel"
+        ],
+        "prState": "merged"
+      },
+      {
+        "repo": "GoodDollar/GoodCollective",
+        "number": 307,
+        "title": "GoodCollective pools should support BulkAdd members",
+        "state": "open",
+        "author": "L03TJ3",
+        "labels": [
+          "Scouts Game - Epic"
+        ],
+        "created_at": "2025-11-16T10:00:17Z",
+        "updated_at": "2025-12-09T12:33:19Z",
+        "url": "https://github.com/GoodDollar/GoodCollective/issues/307",
+        "bounty": {
+          "tier": "epic",
+          "usd": 250,
+          "g": 2500000
+        },
+        "labelAddedAt": "2025-11-16T10:01:45Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 3,
+        "lastCommentAt": "2025-12-09T12:33:19Z",
+        "prRefAuthors": [],
+        "prState": "none"
+      },
+      {
+        "repo": "GoodDollar/GoodCollective",
+        "number": 280,
+        "title": "Feature: Manage community pool UI",
+        "state": "closed",
+        "author": "L03TJ3",
+        "labels": [
+          "Scouts Game - Mythic"
+        ],
+        "created_at": "2025-01-07T15:23:38Z",
+        "updated_at": "2025-12-12T09:35:41Z",
+        "url": "https://github.com/GoodDollar/GoodCollective/issues/280",
+        "bounty": {
+          "tier": "mythic",
+          "usd": 350,
+          "g": 3500000
+        },
+        "labelAddedAt": "2025-11-16T10:54:36Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 2,
+        "lastCommentAt": "2025-11-27T11:01:05Z",
+        "prRefAuthors": [
+          "EmekaManuel"
+        ],
+        "prState": "merged"
+      },
+      {
+        "repo": "GoodDollar/GoodCollective",
         "number": 279,
         "title": "Make more clear what type of Collective the user is viewing ",
-        "state": "open",
+        "state": "closed",
         "author": "decentralauren",
         "labels": [
           "Scouts Game - Common"
         ],
         "created_at": "2025-01-02T16:33:17Z",
-        "updated_at": "2025-09-02T10:46:21Z",
+        "updated_at": "2025-11-21T05:07:56Z",
         "url": "https://github.com/GoodDollar/GoodCollective/issues/279",
         "bounty": {
           "tier": "common",
@@ -216,8 +236,8 @@
         },
         "labelAddedAt": "2025-03-18T07:27:21Z",
         "labelAddedBy": "L03TJ3",
-        "commentsCount": 5,
-        "lastCommentAt": "2025-04-16T06:45:55Z",
+        "commentsCount": 6,
+        "lastCommentAt": "2025-11-21T05:07:56Z",
         "prRefAuthors": [
           "ManyRios"
         ],
@@ -309,14 +329,14 @@
         "repo": "GoodDollar/GoodCollective",
         "number": 267,
         "title": "[Improvement, GoodCollective] The total amount on the GC home page is not right",
-        "state": "open",
+        "state": "closed",
         "author": "vldkhh",
         "labels": [
           "bug",
           "Scouts Game - Common"
         ],
         "created_at": "2024-12-11T13:14:21Z",
-        "updated_at": "2025-07-30T09:02:03Z",
+        "updated_at": "2025-11-21T05:28:34Z",
         "url": "https://github.com/GoodDollar/GoodCollective/issues/267",
         "bounty": {
           "tier": "common",
@@ -503,7 +523,7 @@
           "Scouts Game - Rare"
         ],
         "created_at": "2024-08-26T19:31:07Z",
-        "updated_at": "2025-07-14T19:46:15Z",
+        "updated_at": "2025-11-21T05:30:53Z",
         "url": "https://github.com/GoodDollar/GoodCollective/issues/221",
         "bounty": {
           "tier": "rare",
@@ -604,20 +624,45 @@
     "GoodDollar/GoodWeb3-Mono": [
       {
         "repo": "GoodDollar/GoodWeb3-Mono",
+        "number": 251,
+        "title": "Micro bridge: UI/UX bugs",
+        "state": "open",
+        "author": "sirpy",
+        "labels": [
+          "bug",
+          "Scouts Game - Basic"
+        ],
+        "created_at": "2025-09-30T09:46:13Z",
+        "updated_at": "2025-12-12T09:16:27Z",
+        "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/251",
+        "bounty": {
+          "tier": "basic",
+          "usd": 25,
+          "g": 250000
+        },
+        "labelAddedAt": "2025-10-02T05:27:46Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 2,
+        "lastCommentAt": "2025-12-12T09:16:27Z",
+        "prRefAuthors": [],
+        "prState": "none"
+      },
+      {
+        "repo": "GoodDollar/GoodWeb3-Mono",
         "number": 203,
         "title": "Feat: add UI support for GoodDollar message passing bridge",
         "state": "open",
         "author": "sirpy",
         "labels": [
-          "Scouts Game - Epic"
+          "Scouts Game - Legendary"
         ],
         "created_at": "2024-10-08T10:45:26Z",
-        "updated_at": "2025-08-06T16:37:10Z",
+        "updated_at": "2025-10-09T13:07:53Z",
         "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/203",
         "bounty": {
-          "tier": "epic",
-          "usd": 250,
-          "g": 2500000
+          "tier": "legendary",
+          "usd": 450,
+          "g": 4500000
         },
         "labelAddedAt": "2024-10-08T10:48:58Z",
         "labelAddedBy": "sirpy",
@@ -660,13 +705,13 @@
         "repo": "GoodDollar/GoodWeb3-Mono",
         "number": 224,
         "title": "Add Social Share after first claim",
-        "state": "open",
+        "state": "closed",
         "author": "L03TJ3",
         "labels": [
           "Scouts Game - Rare"
         ],
         "created_at": "2023-02-26T21:57:57Z",
-        "updated_at": "2025-07-24T11:42:49Z",
+        "updated_at": "2025-11-27T14:23:16Z",
         "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/224",
         "bounty": {
           "tier": "rare",
@@ -682,9 +727,243 @@
         ],
         "prState": "merged"
       }
+    ],
+    "GoodDollar/GoodSDKs": [
+      {
+        "repo": "GoodDollar/GoodSDKs",
+        "number": 17,
+        "title": "Add savings widget",
+        "state": "open",
+        "author": "L03TJ3",
+        "labels": [
+          "Scouts Game - Epic"
+        ],
+        "created_at": "2025-08-26T17:37:26Z",
+        "updated_at": "2025-09-17T14:44:07Z",
+        "url": "https://github.com/GoodDollar/GoodSDKs/issues/17",
+        "bounty": {
+          "tier": "epic",
+          "usd": 250,
+          "g": 2500000
+        },
+        "labelAddedAt": "2025-08-26T17:38:41Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 7,
+        "lastCommentAt": "2025-09-01T17:53:08Z",
+        "prRefAuthors": [
+          "kadiray34"
+        ],
+        "prState": "merged"
+      },
+      {
+        "repo": "GoodDollar/GoodSDKs",
+        "number": 11,
+        "title": "User should top his wallet by calling the Faucet contract itself",
+        "state": "closed",
+        "author": "sirpy",
+        "labels": [
+          "Scouts Game - Common"
+        ],
+        "created_at": "2025-07-31T14:06:56Z",
+        "updated_at": "2025-11-27T12:27:54Z",
+        "url": "https://github.com/GoodDollar/GoodSDKs/issues/11",
+        "bounty": {
+          "tier": "common",
+          "usd": 50,
+          "g": 500000
+        },
+        "labelAddedAt": "2025-08-07T07:16:04Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 1,
+        "lastCommentAt": "2025-08-11T07:13:09Z",
+        "prRefAuthors": [
+          "harjaapdhillon16"
+        ],
+        "prState": "merged"
+      },
+      {
+        "repo": "GoodDollar/GoodSDKs",
+        "number": 10,
+        "title": "Add Farcaster support for the identity flow",
+        "state": "open",
+        "author": "L03TJ3",
+        "labels": [
+          "Scouts Game - Common"
+        ],
+        "created_at": "2025-07-30T12:12:30Z",
+        "updated_at": "2025-08-11T07:07:00Z",
+        "url": "https://github.com/GoodDollar/GoodSDKs/issues/10",
+        "bounty": {
+          "tier": "common",
+          "usd": 50,
+          "g": 500000
+        },
+        "labelAddedAt": "2025-07-30T15:48:17Z",
+        "labelAddedBy": "L03TJ3",
+        "commentsCount": 5,
+        "lastCommentAt": "2025-08-11T07:07:00Z",
+        "prRefAuthors": [
+          "vortex-hue"
+        ],
+        "prState": "open"
+      },
+      {
+        "repo": "GoodDollar/GoodSDKs",
+        "number": 6,
+        "title": "Citizen SDK main readme doesnt direct to the claim sdk",
+        "state": "closed",
+        "author": "sirpy",
+        "labels": [
+          "Scouts Game - Common",
+          "documentation"
+        ],
+        "created_at": "2025-07-01T14:50:41Z",
+        "updated_at": "2025-09-02T09:04:36Z",
+        "url": "https://github.com/GoodDollar/GoodSDKs/issues/6",
+        "bounty": {
+          "tier": "common",
+          "usd": 50,
+          "g": 500000
+        },
+        "labelAddedAt": "2025-07-01T14:50:42Z",
+        "labelAddedBy": "sirpy",
+        "commentsCount": 7,
+        "lastCommentAt": "2025-08-07T07:17:07Z",
+        "prRefAuthors": [
+          "romeoscript"
+        ],
+        "prState": "merged"
+      }
     ]
   },
   "openItems": [
+    {
+      "repo": "GoodDollar/GoodWeb3-Mono",
+      "number": 251,
+      "title": "Micro bridge: UI/UX bugs",
+      "state": "open",
+      "author": "sirpy",
+      "labels": [
+        "bug",
+        "Scouts Game - Basic"
+      ],
+      "created_at": "2025-09-30T09:46:13Z",
+      "updated_at": "2025-12-12T09:16:27Z",
+      "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/251",
+      "bounty": {
+        "tier": "basic",
+        "usd": 25,
+        "g": 250000
+      },
+      "labelAddedAt": "2025-10-02T05:27:46Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 2,
+      "lastCommentAt": "2025-12-12T09:16:27Z",
+      "prRefAuthors": [],
+      "prState": "none"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 307,
+      "title": "GoodCollective pools should support BulkAdd members",
+      "state": "open",
+      "author": "L03TJ3",
+      "labels": [
+        "Scouts Game - Epic"
+      ],
+      "created_at": "2025-11-16T10:00:17Z",
+      "updated_at": "2025-12-09T12:33:19Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/307",
+      "bounty": {
+        "tier": "epic",
+        "usd": 250,
+        "g": 2500000
+      },
+      "labelAddedAt": "2025-11-16T10:01:45Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 3,
+      "lastCommentAt": "2025-12-09T12:33:19Z",
+      "prRefAuthors": [],
+      "prState": "none"
+    },
+    {
+      "repo": "GoodDollar/GoodProtocolUI",
+      "number": 614,
+      "title": "Bug: claim button appears clickable while loading claim data",
+      "state": "open",
+      "author": "sirpy",
+      "labels": [
+        "bug",
+        "good first issue",
+        "Scouts Game - Common"
+      ],
+      "created_at": "2025-12-03T12:04:42Z",
+      "updated_at": "2025-12-03T12:04:52Z",
+      "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/614",
+      "bounty": {
+        "tier": "common",
+        "usd": 50,
+        "g": 500000
+      },
+      "labelAddedAt": "2025-12-03T12:04:44Z",
+      "labelAddedBy": "sirpy",
+      "commentsCount": 1,
+      "lastCommentAt": "2025-12-03T12:04:52Z",
+      "prRefAuthors": [],
+      "prState": "none"
+    },
+    {
+      "repo": "GoodDollar/GoodProtocolUI",
+      "number": 611,
+      "title": "Fix: Claim disabled message",
+      "state": "open",
+      "author": "L03TJ3",
+      "labels": [
+        "bug",
+        "Scouts Game - Basic"
+      ],
+      "created_at": "2025-11-04T11:22:45Z",
+      "updated_at": "2025-11-24T06:34:50Z",
+      "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/611",
+      "bounty": {
+        "tier": "basic",
+        "usd": 25,
+        "g": 250000
+      },
+      "labelAddedAt": "2025-11-04T11:23:48Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 2,
+      "lastCommentAt": "2025-11-24T06:34:30Z",
+      "prRefAuthors": [],
+      "prState": "none"
+    },
+    {
+      "repo": "GoodDollar/GoodWeb3-Mono",
+      "number": 203,
+      "title": "Feat: add UI support for GoodDollar message passing bridge",
+      "state": "open",
+      "author": "sirpy",
+      "labels": [
+        "Scouts Game - Legendary"
+      ],
+      "created_at": "2024-10-08T10:45:26Z",
+      "updated_at": "2025-10-09T13:07:53Z",
+      "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/203",
+      "bounty": {
+        "tier": "legendary",
+        "usd": 450,
+        "g": 4500000
+      },
+      "labelAddedAt": "2024-10-08T10:48:58Z",
+      "labelAddedBy": "sirpy",
+      "commentsCount": 18,
+      "lastCommentAt": "2025-08-06T16:37:10Z",
+      "prRefAuthors": [
+        "BenraouaneSoufiane",
+        "romeoscript"
+      ],
+      "prState": "open"
+    },
     {
       "repo": "GoodDollar/GoodProtocolUI",
       "number": 593,
@@ -740,33 +1019,6 @@
     },
     {
       "repo": "GoodDollar/GoodWeb3-Mono",
-      "number": 203,
-      "title": "Feat: add UI support for GoodDollar message passing bridge",
-      "state": "open",
-      "author": "sirpy",
-      "labels": [
-        "Scouts Game - Epic"
-      ],
-      "created_at": "2024-10-08T10:45:26Z",
-      "updated_at": "2025-08-06T16:37:10Z",
-      "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/203",
-      "bounty": {
-        "tier": "epic",
-        "usd": 250,
-        "g": 2500000
-      },
-      "labelAddedAt": "2024-10-08T10:48:58Z",
-      "labelAddedBy": "sirpy",
-      "commentsCount": 18,
-      "lastCommentAt": "2025-08-06T16:37:10Z",
-      "prRefAuthors": [
-        "BenraouaneSoufiane",
-        "romeoscript"
-      ],
-      "prState": "open"
-    },
-    {
-      "repo": "GoodDollar/GoodWeb3-Mono",
       "number": 228,
       "title": "Feature: manage user tasks",
       "state": "open",
@@ -794,6 +1046,189 @@
     }
   ],
   "closedItems": [
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 280,
+      "title": "Feature: Manage community pool UI",
+      "state": "closed",
+      "author": "L03TJ3",
+      "labels": [
+        "Scouts Game - Mythic"
+      ],
+      "created_at": "2025-01-07T15:23:38Z",
+      "updated_at": "2025-12-12T09:35:41Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/280",
+      "bounty": {
+        "tier": "mythic",
+        "usd": 350,
+        "g": 3500000
+      },
+      "labelAddedAt": "2025-11-16T10:54:36Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 2,
+      "lastCommentAt": "2025-11-27T11:01:05Z",
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodWeb3-Mono",
+      "number": 224,
+      "title": "Add Social Share after first claim",
+      "state": "closed",
+      "author": "L03TJ3",
+      "labels": [
+        "Scouts Game - Rare"
+      ],
+      "created_at": "2023-02-26T21:57:57Z",
+      "updated_at": "2025-11-27T14:23:16Z",
+      "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/224",
+      "bounty": {
+        "tier": "rare",
+        "usd": 150,
+        "g": 1500000
+      },
+      "labelAddedAt": "2024-12-27T15:43:39Z",
+      "labelAddedBy": "decentralauren",
+      "commentsCount": 15,
+      "lastCommentAt": "2025-07-24T11:42:49Z",
+      "prRefAuthors": [
+        "vortex-hue"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodSDKs",
+      "number": 11,
+      "title": "User should top his wallet by calling the Faucet contract itself",
+      "state": "closed",
+      "author": "sirpy",
+      "labels": [
+        "Scouts Game - Common"
+      ],
+      "created_at": "2025-07-31T14:06:56Z",
+      "updated_at": "2025-11-27T12:27:54Z",
+      "url": "https://github.com/GoodDollar/GoodSDKs/issues/11",
+      "bounty": {
+        "tier": "common",
+        "usd": 50,
+        "g": 500000
+      },
+      "labelAddedAt": "2025-08-07T07:16:04Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 1,
+      "lastCommentAt": "2025-08-11T07:13:09Z",
+      "prRefAuthors": [
+        "harjaapdhillon16"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 308,
+      "title": "Pool Members should be able to join pools and claim their rewards",
+      "state": "closed",
+      "author": "L03TJ3",
+      "labels": [
+        "Scouts Game - Rare"
+      ],
+      "created_at": "2025-11-21T04:21:41Z",
+      "updated_at": "2025-11-27T12:26:17Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/308",
+      "bounty": {
+        "tier": "rare",
+        "usd": 150,
+        "g": 1500000
+      },
+      "labelAddedAt": "2025-11-21T04:21:42Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 3,
+      "lastCommentAt": "2025-11-25T20:31:16Z",
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 221,
+      "title": "Wallet Detail - Action Summary & Action Logs for stewards",
+      "state": "open",
+      "author": "decentralauren",
+      "labels": [
+        "Scouts Game - Rare"
+      ],
+      "created_at": "2024-08-26T19:31:07Z",
+      "updated_at": "2025-11-21T05:30:53Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/221",
+      "bounty": {
+        "tier": "rare",
+        "usd": 150,
+        "g": 1500000
+      },
+      "labelAddedAt": "2024-12-30T18:07:37Z",
+      "labelAddedBy": "decentralauren",
+      "commentsCount": 10,
+      "lastCommentAt": "2025-07-14T19:46:15Z",
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 267,
+      "title": "[Improvement, GoodCollective] The total amount on the GC home page is not right",
+      "state": "closed",
+      "author": "vldkhh",
+      "labels": [
+        "bug",
+        "Scouts Game - Common"
+      ],
+      "created_at": "2024-12-11T13:14:21Z",
+      "updated_at": "2025-11-21T05:28:34Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/267",
+      "bounty": {
+        "tier": "common",
+        "usd": 50,
+        "g": 500000
+      },
+      "labelAddedAt": "2025-01-23T10:19:26Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 11,
+      "lastCommentAt": "2025-07-15T14:58:40Z",
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 279,
+      "title": "Make more clear what type of Collective the user is viewing ",
+      "state": "closed",
+      "author": "decentralauren",
+      "labels": [
+        "Scouts Game - Common"
+      ],
+      "created_at": "2025-01-02T16:33:17Z",
+      "updated_at": "2025-11-21T05:07:56Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/279",
+      "bounty": {
+        "tier": "common",
+        "usd": 50,
+        "g": 500000
+      },
+      "labelAddedAt": "2025-03-18T07:27:21Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 6,
+      "lastCommentAt": "2025-11-21T05:07:56Z",
+      "prRefAuthors": [
+        "ManyRios"
+      ],
+      "prState": "merged"
+    },
     {
       "repo": "GoodDollar/GoodSDKs",
       "number": 17,
@@ -898,32 +1333,6 @@
       "lastCommentAt": "2024-04-15T04:27:12Z",
       "prRefAuthors": [
         "YanVictorSN"
-      ],
-      "prState": "merged"
-    },
-    {
-      "repo": "GoodDollar/GoodCollective",
-      "number": 279,
-      "title": "Make more clear what type of Collective the user is viewing ",
-      "state": "open",
-      "author": "decentralauren",
-      "labels": [
-        "Scouts Game - Common"
-      ],
-      "created_at": "2025-01-02T16:33:17Z",
-      "updated_at": "2025-09-02T10:46:21Z",
-      "url": "https://github.com/GoodDollar/GoodCollective/issues/279",
-      "bounty": {
-        "tier": "common",
-        "usd": 50,
-        "g": 500000
-      },
-      "labelAddedAt": "2025-03-18T07:27:21Z",
-      "labelAddedBy": "L03TJ3",
-      "commentsCount": 5,
-      "lastCommentAt": "2025-04-16T06:45:55Z",
-      "prRefAuthors": [
-        "ManyRios"
       ],
       "prState": "merged"
     },
@@ -1065,85 +1474,6 @@
       "prState": "merged"
     },
     {
-      "repo": "GoodDollar/GoodSDKs",
-      "number": 11,
-      "title": "User should top his wallet by calling the Faucet contract itself",
-      "state": "open",
-      "author": "sirpy",
-      "labels": [
-        "Scouts Game - Common"
-      ],
-      "created_at": "2025-07-31T14:06:56Z",
-      "updated_at": "2025-08-11T07:16:47Z",
-      "url": "https://github.com/GoodDollar/GoodSDKs/issues/11",
-      "bounty": {
-        "tier": "common",
-        "usd": 50,
-        "g": 500000
-      },
-      "labelAddedAt": "2025-08-07T07:16:04Z",
-      "labelAddedBy": "L03TJ3",
-      "commentsCount": 1,
-      "lastCommentAt": "2025-08-11T07:13:09Z",
-      "prRefAuthors": [
-        "harjaapdhillon16"
-      ],
-      "prState": "merged"
-    },
-    {
-      "repo": "GoodDollar/GoodCollective",
-      "number": 267,
-      "title": "[Improvement, GoodCollective] The total amount on the GC home page is not right",
-      "state": "open",
-      "author": "vldkhh",
-      "labels": [
-        "bug",
-        "Scouts Game - Common"
-      ],
-      "created_at": "2024-12-11T13:14:21Z",
-      "updated_at": "2025-07-30T09:02:03Z",
-      "url": "https://github.com/GoodDollar/GoodCollective/issues/267",
-      "bounty": {
-        "tier": "common",
-        "usd": 50,
-        "g": 500000
-      },
-      "labelAddedAt": "2025-01-23T10:19:26Z",
-      "labelAddedBy": "L03TJ3",
-      "commentsCount": 11,
-      "lastCommentAt": "2025-07-15T14:58:40Z",
-      "prRefAuthors": [
-        "EmekaManuel"
-      ],
-      "prState": "merged"
-    },
-    {
-      "repo": "GoodDollar/GoodWeb3-Mono",
-      "number": 224,
-      "title": "Add Social Share after first claim",
-      "state": "open",
-      "author": "L03TJ3",
-      "labels": [
-        "Scouts Game - Rare"
-      ],
-      "created_at": "2023-02-26T21:57:57Z",
-      "updated_at": "2025-07-24T11:42:49Z",
-      "url": "https://github.com/GoodDollar/GoodWeb3-Mono/issues/224",
-      "bounty": {
-        "tier": "rare",
-        "usd": 150,
-        "g": 1500000
-      },
-      "labelAddedAt": "2024-12-27T15:43:39Z",
-      "labelAddedBy": "decentralauren",
-      "commentsCount": 15,
-      "lastCommentAt": "2025-07-24T11:42:49Z",
-      "prRefAuthors": [
-        "vortex-hue"
-      ],
-      "prState": "merged"
-    },
-    {
       "repo": "GoodDollar/GoodProtocolUI",
       "number": 576,
       "title": "Bug: Uniswap widget shows error when high price-impact",
@@ -1168,32 +1498,6 @@
       "lastCommentAt": "2025-07-14T23:34:47Z",
       "prRefAuthors": [
         "supersonicwisd1"
-      ],
-      "prState": "merged"
-    },
-    {
-      "repo": "GoodDollar/GoodCollective",
-      "number": 221,
-      "title": "Wallet Detail - Action Summary & Action Logs for stewards",
-      "state": "open",
-      "author": "decentralauren",
-      "labels": [
-        "Scouts Game - Rare"
-      ],
-      "created_at": "2024-08-26T19:31:07Z",
-      "updated_at": "2025-07-14T19:46:15Z",
-      "url": "https://github.com/GoodDollar/GoodCollective/issues/221",
-      "bounty": {
-        "tier": "rare",
-        "usd": 150,
-        "g": 1500000
-      },
-      "labelAddedAt": "2024-12-30T18:07:37Z",
-      "labelAddedBy": "decentralauren",
-      "commentsCount": 10,
-      "lastCommentAt": "2025-07-14T19:46:15Z",
-      "prRefAuthors": [
-        "EmekaManuel"
       ],
       "prState": "merged"
     },
@@ -1359,6 +1663,30 @@
     }
   ],
   "futureScoutsItems": [
+    {
+      "repo": "GoodDollar/GoodSDKs",
+      "number": 23,
+      "title": "Add Streaming SDK",
+      "state": "open",
+      "author": "L03TJ3",
+      "labels": [
+        "Future Scouts Game"
+      ],
+      "created_at": "2025-12-09T13:05:14Z",
+      "updated_at": "2025-12-09T13:05:49Z",
+      "url": "https://github.com/GoodDollar/GoodSDKs/issues/23",
+      "bounty": {
+        "tier": null,
+        "usd": 0,
+        "g": 0
+      },
+      "labelAddedAt": "2025-12-09T13:05:49Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 0,
+      "lastCommentAt": null,
+      "prRefAuthors": [],
+      "prState": "none"
+    },
     {
       "repo": "GoodDollar/GoodProtocolUI",
       "number": 583,
@@ -1637,17 +1965,53 @@
   "aggregates": {
     "overall": {
       "open": {
-        "count": 4,
-        "usd": 700,
-        "g": 7000000
+        "count": 8,
+        "usd": 1250,
+        "g": 12500000
       },
       "closed": {
-        "count": 21,
-        "usd": 2150,
-        "g": 21500000
+        "count": 23,
+        "usd": 2650,
+        "g": 26500000
       }
     },
     "byRepo": {
+      "GoodDollar/GoodProtocolUI": {
+        "open": {
+          "count": 3,
+          "usd": 325,
+          "g": 3250000
+        },
+        "closed": {
+          "count": 2,
+          "usd": 200,
+          "g": 2000000
+        }
+      },
+      "GoodDollar/GoodCollective": {
+        "open": {
+          "count": 1,
+          "usd": 250,
+          "g": 2500000
+        },
+        "closed": {
+          "count": 17,
+          "usd": 1950,
+          "g": 19500000
+        }
+      },
+      "GoodDollar/GoodWeb3-Mono": {
+        "open": {
+          "count": 3,
+          "usd": 625,
+          "g": 6250000
+        },
+        "closed": {
+          "count": 1,
+          "usd": 150,
+          "g": 1500000
+        }
+      },
       "GoodDollar/GoodSDKs": {
         "open": {
           "count": 1,
@@ -1658,42 +2022,6 @@
           "count": 3,
           "usd": 350,
           "g": 3500000
-        }
-      },
-      "GoodDollar/GoodProtocolUI": {
-        "open": {
-          "count": 1,
-          "usd": 250,
-          "g": 2500000
-        },
-        "closed": {
-          "count": 2,
-          "usd": 200,
-          "g": 2000000
-        }
-      },
-      "GoodDollar/GoodCollective": {
-        "open": {
-          "count": 0,
-          "usd": 0,
-          "g": 0
-        },
-        "closed": {
-          "count": 15,
-          "usd": 1450,
-          "g": 14500000
-        }
-      },
-      "GoodDollar/GoodWeb3-Mono": {
-        "open": {
-          "count": 2,
-          "usd": 400,
-          "g": 4000000
-        },
-        "closed": {
-          "count": 1,
-          "usd": 150,
-          "g": 1500000
         }
       }
     }
