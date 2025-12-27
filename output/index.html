@@ -41,6 +41,50 @@
     footer { text-align: center; color: var(--muted); padding: 24px 12px; }
     .screen { display: none; }
     .screen.active { display: block; }
+    .header-actions { margin-top: 10px; }
+    .report-btn { background: var(--accent); color: #0b1220; border: 1px solid var(--accent); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .report-btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    .report-modal { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.72); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 30; }
+    .report-modal.active { display: flex; }
+    .report-card { width: min(920px, 100%); max-height: 90vh; overflow: auto; background: #ffffff; color: #111827; border-radius: 16px; padding: 24px; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+    .report-header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; margin-bottom: 16px; }
+    .report-kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; color: #6b7280; }
+    .report-meta { display: flex; flex-wrap: wrap; gap: 10px 16px; color: #6b7280; font-size: 12px; margin-top: 6px; }
+    .report-actions { display: flex; gap: 8px; align-items: flex-start; }
+    .report-section { margin: 18px 0; }
+    .report-section h3 { margin: 0 0 6px; font-size: 14px; color: #111827; }
+    .report-subtext { color: #6b7280; font-size: 12px; margin-bottom: 10px; }
+    .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .report-metric { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #f9fafb; }
+    .report-metric-label { color: #6b7280; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .report-metric-value { font-size: 18px; font-weight: 700; margin-top: 6px; }
+    .report-metric-subtext { color: #6b7280; font-size: 12px; margin-top: 4px; }
+    .report-pill-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+    .report-pill { background: #e5e7eb; color: #111827; border-radius: 999px; padding: 4px 8px; font-size: 12px; }
+    .report-table table { border-collapse: collapse; width: 100%; }
+    .report-table th { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+    .report-table td { padding: 8px 10px; border-bottom: 1px solid #f3f4f6; }
+    .report-table a { color: inherit; text-decoration: none; }
+    .report-table a:hover { text-decoration: underline; }
+    .report-bar { width: 120px; height: 8px; background: #e5e7eb; border-radius: 999px; overflow: hidden; }
+    .report-bar span { display: block; height: 100%; background: #2563eb; border-radius: inherit; }
+    .report-ticket-grid { display: grid; gap: 12px; }
+    .report-ticket-block { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #f9fafb; }
+    .report-ticket-block h4 { margin: 0 0 8px; font-size: 13px; color: #111827; }
+    .report-ticket-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    .report-ticket-list li { display: grid; gap: 2px; }
+    .report-ticket-list a { color: #111827; text-decoration: none; }
+    .report-ticket-list a:hover { text-decoration: underline; }
+    .ticket-repo { font-size: 12px; color: #6b7280; }
+    .ticket-meta { font-size: 11px; color: #6b7280; }
+    body.report-open { overflow: hidden; }
+    @media print {
+      body { background: #ffffff; color: #111827; }
+      header, main, footer { display: none !important; }
+      body.report-open .report-modal { position: static; inset: auto; padding: 0; background: none; display: block !important; }
+      .report-card { box-shadow: none; border-radius: 0; padding: 0; max-height: none; }
+      .report-actions { display: none !important; }
+    }
   </style>
     </head>
     <body>
@@ -53,7 +97,7 @@
         <div><strong>Since:</strong> 2023-01-01</div>
         <div><strong>Label contains:</strong> scouts</div>
         <div><strong>Total:</strong> 31</div>
-        <div><strong>Generated:</strong> 2025-12-27T03:34:11.356Z</div>
+        <div><strong>Generated:</strong> 2025-12-27T05:00:08.547Z</div>
       </div>
       <nav class="tabs">
         <button data-tab="open" class="active">Open</button>
@@ -62,6 +106,9 @@
         <button data-tab="aggregates">Aggregates</button>
         <button data-tab="futurescouts">Future Scouts</button>
       </nav>
+      <div class="header-actions">
+        <button class="report-btn" id="report-btn" type="button">Generate Report</button>
+      </div>
     </header>
       <main>
         <div id="open" class="screen active">
@@ -108,12 +155,12 @@
         <td class="repo">GoodDollar/GoodCollective</td>
         <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/307" target="_blank" rel="noopener noreferrer">GoodCollective pools should support BulkAdd members</a></td>
         <td class="state open">open</td>
-        <td class="pr-state">none</td>
+        <td class="pr-state">open</td>
         <td class="author">L03TJ3</td>
         <td class="updated">2025-12-09</td>
         <td class="bounty">Epic — $250 | 2,500,000 G$</td>
         <td class="comments">3</td>
-        <td class="pr-authors">-</td>
+        <td class="pr-authors">EmekaManuel</td>
         <td class="labels"><span class="label">Scouts Game - Epic</span></td>
       </tr>
       <tr>
@@ -629,12 +676,12 @@
         <td class="repo">GoodDollar/GoodCollective</td>
         <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/307" target="_blank" rel="noopener noreferrer">GoodCollective pools should support BulkAdd members</a></td>
         <td class="state open">open</td>
-        <td class="pr-state">none</td>
+        <td class="pr-state">open</td>
         <td class="author">L03TJ3</td>
         <td class="updated">2025-12-09</td>
         <td class="bounty">Epic — $250 | 2,500,000 G$</td>
         <td class="comments">3</td>
-        <td class="pr-authors">-</td>
+        <td class="pr-authors">EmekaManuel</td>
         <td class="labels"><span class="label">Scouts Game - Epic</span></td>
       </tr>
 
@@ -1247,7 +1294,517 @@
       </div>
     </section></div>
       </main>
-      <footer>Generated from GitHub Search API • 12/27/2025, 10:34:11 AM</footer>
+      <footer>Generated from GitHub Search API • 12/27/2025, 12:00:08 PM</footer>
+      <div id="report-modal" class="report-modal" aria-hidden="true">
+        
+    <div class="report-card" role="dialog" aria-modal="true" aria-labelledby="report-title">
+      <div class="report-header">
+        <div>
+          <div class="report-kicker">Scout Issues Report</div>
+          <h2 id="report-title">Overview</h2>
+          <div class="report-meta">
+            <span>Org: GoodDollar</span>
+            <span>Since: 2023-01-01</span>
+            <span>Label: scouts</span>
+            <span>Generated: 2025-12-27T05:00:08.547Z</span>
+          </div>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" id="report-print" type="button">Download PDF</button>
+          <button class="report-btn ghost" id="report-close" type="button">Close</button>
+        </div>
+      </div>
+      <section class="report-section">
+        <div class="report-grid">
+          <div class="report-metric">
+            <div class="report-metric-label">Contributors Participated</div>
+            <div class="report-metric-value">14</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Tickets Closed</div>
+            <div class="report-metric-value">24</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Rewards Distributed</div>
+            <div class="report-metric-value">$2,900 | 29,000,000 G$</div>
+            <div class="report-metric-subtext">24 eligible tickets</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Open In Progress</div>
+            <div class="report-metric-value">7</div>
+          </div>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Contributors Participated</h3>
+        <div class="report-subtext">Based on PR reference authors.</div>
+        <div class="report-pill-wrap"><span class="report-pill">alisonhawk</span><span class="report-pill">BenraouaneSoufiane</span><span class="report-pill">EmekaManuel</span><span class="report-pill">harjaapdhillon16</span><span class="report-pill">kadiray34</span><span class="report-pill">ManyRios</span><span class="report-pill">metanodreamer</span><span class="report-pill">pbkompasz</span><span class="report-pill">robaribas</span><span class="report-pill">romeoscript</span><span class="report-pill">supersonicwisd1</span><span class="report-pill">vortex-hue</span><span class="report-pill">vtamara</span><span class="report-pill">YanVictorSN</span></div>
+      </section>
+      <section class="report-section">
+        <h3>Rewards Distributed</h3>
+        <div class="report-subtext">Merged PRs or closed issues with connected PRs. Unlabeled defaults to Basic.</div>
+        <div class="table-wrap report-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Tickets</th>
+                <th>USD</th>
+                <th>G$</th>
+                <th>Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+        <tr>
+          <td>Basic</td>
+          <td class="num">0</td>
+          <td class="num">$0</td>
+          <td class="num">0 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:0.00%"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Common</td>
+          <td class="num">14</td>
+          <td class="num">$700</td>
+          <td class="num">7,000,000 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:100.00%"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Rare</td>
+          <td class="num">6</td>
+          <td class="num">$900</td>
+          <td class="num">9,000,000 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:42.86%"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Epic</td>
+          <td class="num">2</td>
+          <td class="num">$500</td>
+          <td class="num">5,000,000 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:14.29%"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Mythic</td>
+          <td class="num">1</td>
+          <td class="num">$350</td>
+          <td class="num">3,500,000 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:7.14%"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Legendary</td>
+          <td class="num">1</td>
+          <td class="num">$450</td>
+          <td class="num">4,500,000 G$</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:7.14%"></span>
+            </div>
+          </td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Contributor Rewards</h3>
+        <div class="report-subtext">Attribution uses the last PR reference author per ticket. Contributors excluded: L03TJ3, sirpy.</div>
+        <div class="table-wrap report-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Contributor</th>
+                <th>Tickets</th>
+                <th>Rewarded Tickets</th>
+                <th>USD</th>
+                <th>G$</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+        <tr>
+          <td>EmekaManuel</td>
+          <td class="num">8</td>
+          <td class="num">6</td>
+          <td class="num">$1,300</td>
+          <td class="num">13,000,000 G$</td>
+        </tr>
+        <tr>
+          <td>YanVictorSN</td>
+          <td class="num">7</td>
+          <td class="num">6</td>
+          <td class="num">$400</td>
+          <td class="num">4,000,000 G$</td>
+        </tr>
+        <tr>
+          <td>vortex-hue</td>
+          <td class="num">3</td>
+          <td class="num">2</td>
+          <td class="num">$400</td>
+          <td class="num">4,000,000 G$</td>
+        </tr>
+        <tr>
+          <td>kadiray34</td>
+          <td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">$250</td>
+          <td class="num">2,500,000 G$</td>
+        </tr>
+        <tr>
+          <td>supersonicwisd1</td>
+          <td class="num">2</td>
+          <td class="num">2</td>
+          <td class="num">$200</td>
+          <td class="num">2,000,000 G$</td>
+        </tr>
+        <tr>
+          <td>vtamara</td>
+          <td class="num">2</td>
+          <td class="num">2</td>
+          <td class="num">$100</td>
+          <td class="num">1,000,000 G$</td>
+        </tr>
+        <tr>
+          <td>alisonhawk</td>
+          <td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">$50</td>
+          <td class="num">500,000 G$</td>
+        </tr>
+        <tr>
+          <td>harjaapdhillon16</td>
+          <td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">$50</td>
+          <td class="num">500,000 G$</td>
+        </tr>
+        <tr>
+          <td>ManyRios</td>
+          <td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">$50</td>
+          <td class="num">500,000 G$</td>
+        </tr>
+        <tr>
+          <td>metanodreamer</td>
+          <td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">$50</td>
+          <td class="num">500,000 G$</td>
+        </tr>
+        <tr>
+          <td>romeoscript</td>
+          <td class="num">2</td>
+          <td class="num">1</td>
+          <td class="num">$50</td>
+          <td class="num">500,000 G$</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Tickets Picked Up</h3>
+        <div class="report-subtext">All referenced tickets, grouped by contributor.</div>
+        <div class="report-ticket-grid">
+          
+        <div class="report-ticket-block">
+          <h4>EmekaManuel <span class="muted">(8)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/308" target="_blank" rel="noopener noreferrer">Pool Members should be able to join pools and claim their rewards</a>
+              <span class="ticket-meta">open · pr: merged · 2025-12-15</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/280" target="_blank" rel="noopener noreferrer">Feature: Manage community pool UI</a>
+              <span class="ticket-meta">open · pr: merged · 2025-12-15</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodWeb3-Mono</span>
+              <a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/251" target="_blank" rel="noopener noreferrer">Micro bridge: UI/UX bugs</a>
+              <span class="ticket-meta">open · pr: open · 2025-12-12</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/307" target="_blank" rel="noopener noreferrer">GoodCollective pools should support BulkAdd members</a>
+              <span class="ticket-meta">open · pr: open · 2025-12-09</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/221" target="_blank" rel="noopener noreferrer">Wallet Detail - Action Summary &amp; Action Logs for stewards</a>
+              <span class="ticket-meta">open · pr: merged · 2025-11-21</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/267" target="_blank" rel="noopener noreferrer">[Improvement, GoodCollective] The total amount on the GC home page is not right</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-11-21</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/231" target="_blank" rel="noopener noreferrer">Create Community Pools</a>
+              <span class="ticket-meta">open · pr: merged · 2025-09-17</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/243" target="_blank" rel="noopener noreferrer">Show network and admin fees (values) in Donation flow, collective and wallet screens</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-04</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>YanVictorSN <span class="muted">(7)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/162" target="_blank" rel="noopener noreferrer">[UX enhancement] Update Main Page Collective tile behavior</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-02</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodWeb3-Mono</span>
+              <a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/228" target="_blank" rel="noopener noreferrer">Feature: manage user tasks</a>
+              <span class="ticket-meta">open · pr: open · 2025-07-23</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/227" target="_blank" rel="noopener noreferrer">Feat: support more wallets using reown</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-04-11</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/253" target="_blank" rel="noopener noreferrer">[Improvements, GoodCollective] Update the &quot;Thank you&quot; modal after donation</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-03-18</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/214" target="_blank" rel="noopener noreferrer">feat: add ability to switch networks</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-03-18</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/177" target="_blank" rel="noopener noreferrer">[Improvement] Replace Twitter logo for X</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-03-18</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/272" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Improve wallet containers to follow the design</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-03-18</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>vortex-hue <span class="muted">(3)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodProtocolUI</span>
+              <a href="https://github.com/GoodDollar/GoodProtocolUI/issues/593" target="_blank" rel="noopener noreferrer">[Feat] Integrate with reown appkit</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-12-16</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodWeb3-Mono</span>
+              <a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/224" target="_blank" rel="noopener noreferrer">Add Social Share after first claim</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-11-27</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodSDKs</span>
+              <a href="https://github.com/GoodDollar/GoodSDKs/issues/10" target="_blank" rel="noopener noreferrer">Add Farcaster support for the identity flow</a>
+              <span class="ticket-meta">open · pr: open · 2025-08-11</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>kadiray34 <span class="muted">(1)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodSDKs</span>
+              <a href="https://github.com/GoodDollar/GoodSDKs/issues/17" target="_blank" rel="noopener noreferrer">Add savings widget</a>
+              <span class="ticket-meta">open · pr: merged · 2025-09-17</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>supersonicwisd1 <span class="muted">(2)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodProtocolUI</span>
+              <a href="https://github.com/GoodDollar/GoodProtocolUI/issues/483" target="_blank" rel="noopener noreferrer">Implement &quot;Buy G$&quot;</a>
+              <span class="ticket-meta">open · pr: merged · 2025-09-01</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodProtocolUI</span>
+              <a href="https://github.com/GoodDollar/GoodProtocolUI/issues/576" target="_blank" rel="noopener noreferrer">Bug: Uniswap widget shows error when high price-impact</a>
+              <span class="ticket-meta">open · pr: merged · 2025-07-14</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>vtamara <span class="muted">(2)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/269" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] The numbers between pool recipients and stewards are different.</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-02</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/275" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Stewards UI issues </a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-02</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>alisonhawk <span class="muted">(1)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/258" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] Order logic off on donors page</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-02</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>harjaapdhillon16 <span class="muted">(1)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodSDKs</span>
+              <a href="https://github.com/GoodDollar/GoodSDKs/issues/11" target="_blank" rel="noopener noreferrer">User should top his wallet by calling the Faucet contract itself</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-11-27</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>ManyRios <span class="muted">(1)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/279" target="_blank" rel="noopener noreferrer">Make more clear what type of Collective the user is viewing </a>
+              <span class="ticket-meta">closed · pr: merged · 2025-11-21</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>metanodreamer <span class="muted">(1)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodCollective</span>
+              <a href="https://github.com/GoodDollar/GoodCollective/issues/261" target="_blank" rel="noopener noreferrer">[BUG, GoodCollective] the Collective cards should be clickable to bring the user to the respective collective.</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-03-18</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report-ticket-block">
+          <h4>romeoscript <span class="muted">(2)</span></h4>
+          <ul class="report-ticket-list">
+            
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodWeb3-Mono</span>
+              <a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/203" target="_blank" rel="noopener noreferrer">Feat: add UI support for GoodDollar message passing bridge</a>
+              <span class="ticket-meta">open · pr: open · 2025-10-09</span>
+            </li>
+            <li>
+              <span class="ticket-repo">GoodDollar/GoodSDKs</span>
+              <a href="https://github.com/GoodDollar/GoodSDKs/issues/6" target="_blank" rel="noopener noreferrer">Citizen SDK main readme doesnt direct to the claim sdk</a>
+              <span class="ticket-meta">closed · pr: merged · 2025-09-02</span>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </section>
+      
+    <section class="report-section">
+      <h3>Tickets Still In Progress</h3>
+      <div class="report-subtext">Open issues with no merged PR.</div>
+      <div class="table-wrap report-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Repo</th>
+              <th>Title</th>
+              <th>Updated</th>
+              <th>PR State</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/251" target="_blank" rel="noopener noreferrer">Micro bridge: UI/UX bugs</a></td>
+        <td>2025-12-12</td>
+        <td>open</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodCollective</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodCollective/issues/307" target="_blank" rel="noopener noreferrer">GoodCollective pools should support BulkAdd members</a></td>
+        <td>2025-12-09</td>
+        <td>open</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/614" target="_blank" rel="noopener noreferrer">Bug: claim button appears clickable while loading claim data</a></td>
+        <td>2025-12-03</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodProtocolUI</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodProtocolUI/issues/611" target="_blank" rel="noopener noreferrer">Fix: Claim disabled message</a></td>
+        <td>2025-11-24</td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/203" target="_blank" rel="noopener noreferrer">Feat: add UI support for GoodDollar message passing bridge</a></td>
+        <td>2025-10-09</td>
+        <td>open</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodSDKs</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodSDKs/issues/10" target="_blank" rel="noopener noreferrer">Add Farcaster support for the identity flow</a></td>
+        <td>2025-08-11</td>
+        <td>open</td>
+      </tr>
+      <tr>
+        <td class="repo">GoodDollar/GoodWeb3-Mono</td>
+        <td class="title"><a href="https://github.com/GoodDollar/GoodWeb3-Mono/issues/228" target="_blank" rel="noopener noreferrer">Feature: manage user tasks</a></td>
+        <td>2025-07-23</td>
+        <td>open</td>
+      </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </div>
+      </div>
       <script>
     const tabs = document.querySelectorAll('nav.tabs button');
     const screens = document.querySelectorAll('.screen');
@@ -1257,6 +1814,28 @@
       const target = btn.getAttribute('data-tab');
       screens.forEach(sc => sc.classList.toggle('active', sc.id === target));
     }));
+    const reportBtn = document.getElementById('report-btn');
+    const reportModal = document.getElementById('report-modal');
+    const reportClose = document.getElementById('report-close');
+    const reportPrint = document.getElementById('report-print');
+    if (reportBtn && reportModal) {
+      const openReport = () => {
+        reportModal.classList.add('active');
+        document.body.classList.add('report-open');
+        reportModal.setAttribute('aria-hidden', 'false');
+      };
+      const closeReport = () => {
+        reportModal.classList.remove('active');
+        document.body.classList.remove('report-open');
+        reportModal.setAttribute('aria-hidden', 'true');
+      };
+      reportBtn.addEventListener('click', openReport);
+      reportClose && reportClose.addEventListener('click', closeReport);
+      reportModal.addEventListener('click', (e) => {
+        if (e.target === reportModal) closeReport();
+      });
+      reportPrint && reportPrint.addEventListener('click', () => window.print());
+    }
   </script>
     </body>
   </html>

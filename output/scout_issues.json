@@ -3,7 +3,7 @@
   "since": "2023-01-01",
   "labelContains": "scouts",
   "total": 31,
-  "generated_at": "2025-12-27T03:34:11.356Z",
+  "generated_at": "2025-12-27T05:00:08.547Z",
   "byRepo": {
     "GoodDollar/GoodProtocolUI": [
       {
@@ -188,8 +188,10 @@
         "labelAddedBy": "L03TJ3",
         "commentsCount": 3,
         "lastCommentAt": "2025-12-09T12:33:19Z",
-        "prRefAuthors": [],
-        "prState": "none"
+        "prRefAuthors": [
+          "EmekaManuel"
+        ],
+        "prState": "open"
       },
       {
         "repo": "GoodDollar/GoodCollective",
@@ -887,8 +889,10 @@
       "labelAddedBy": "L03TJ3",
       "commentsCount": 3,
       "lastCommentAt": "2025-12-09T12:33:19Z",
-      "prRefAuthors": [],
-      "prState": "none"
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "open"
     },
     {
       "repo": "GoodDollar/GoodProtocolUI",

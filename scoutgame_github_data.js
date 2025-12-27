@@ -471,6 +471,86 @@ function buildHtml(data) {
     `$${(n || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
   const fmtG = (n) =>
     `${(n || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })} G$`;
+  const tierOrder = ["basic", "common", "rare", "epic", "mythic", "legendary"];
+  const tierLabel = (t) => `${t[0].toUpperCase()}${t.slice(1)}`;
+  const mainItems = [...data.openItems, ...data.closedItems];
+  const excludedContributors = new Set(["l03tj3", "sirpy"]);
+  const contributors = Array.from(
+    new Set(
+      mainItems.flatMap((it) =>
+        it.prRefAuthors && it.prRefAuthors.length ? it.prRefAuthors : []
+      )
+    )
+  )
+    .filter((name) => !excludedContributors.has(String(name).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b));
+  const ticketsClosedCount = data.closedItems.length;
+  const inProgressItems = mainItems.filter((it) => {
+    const prState = it.prState || "none";
+    return it.state === "open" && prState !== "merged";
+  });
+  const rewardEligibleItems = mainItems.filter((it) => {
+    const prState = it.prState || "none";
+    return prState === "merged" || (it.state === "closed" && prState !== "none");
+  });
+  const defaultBounty = { tier: "basic", ...TIER_MAP.basic };
+  const effectiveBounty = (it) => (it.bounty?.tier ? it.bounty : defaultBounty);
+  const rewardAgg = {
+    total: { count: 0, usd: 0, g: 0 },
+    byTier: Object.fromEntries(
+      tierOrder.map((tier) => [tier, { count: 0, usd: 0, g: 0 }])
+    ),
+  };
+  for (const it of rewardEligibleItems) {
+    const bounty = effectiveBounty(it);
+    const tier = bounty.tier || "basic";
+    rewardAgg.byTier[tier].count += 1;
+    rewardAgg.byTier[tier].usd += bounty.usd || 0;
+    rewardAgg.byTier[tier].g += bounty.g || 0;
+    rewardAgg.total.count += 1;
+    rewardAgg.total.usd += bounty.usd || 0;
+    rewardAgg.total.g += bounty.g || 0;
+  }
+
+  const isRewardEligible = (it) => {
+    const prState = it.prState || "none";
+    return prState === "merged" || (it.state === "closed" && prState !== "none");
+  };
+
+  const contributorMap = new Map();
+  const getContributor = (it) => {
+    const authors = Array.isArray(it.prRefAuthors) ? it.prRefAuthors : [];
+    if (!authors.length) return null;
+    const last = authors[authors.length - 1];
+    if (!last) return null;
+    if (excludedContributors.has(String(last).toLowerCase())) return null;
+    return last;
+  };
+  for (const it of mainItems) {
+    const name = getContributor(it);
+    if (!name) continue;
+    if (!contributorMap.has(name)) {
+      contributorMap.set(name, {
+        name,
+        tickets: [],
+        rewards: { count: 0, usd: 0, g: 0 },
+      });
+    }
+    const entry = contributorMap.get(name);
+    entry.tickets.push(it);
+    if (isRewardEligible(it)) {
+      const bounty = effectiveBounty(it);
+      entry.rewards.count += 1;
+      entry.rewards.usd += bounty.usd || 0;
+      entry.rewards.g += bounty.g || 0;
+    }
+  }
+  const contributorEntries = Array.from(contributorMap.values()).sort((a, b) => {
+    if (b.rewards.usd !== a.rewards.usd) return b.rewards.usd - a.rewards.usd;
+    if (b.rewards.g !== a.rewards.g) return b.rewards.g - a.rewards.g;
+    if (b.rewards.count !== a.rewards.count) return b.rewards.count - a.rewards.count;
+    return a.name.localeCompare(b.name);
+  });
 
   const header = `
     <header>
@@ -492,6 +572,9 @@ function buildHtml(data) {
         <button data-tab="aggregates">Aggregates</button>
         <button data-tab="futurescouts">Future Scouts</button>
       </nav>
+      <div class="header-actions">
+        <button class="report-btn" id="report-btn" type="button">Generate Report</button>
+      </div>
     </header>`;
 
   function issueRow(repo, it, { includeRepo = false } = {}) {
@@ -658,6 +741,231 @@ function buildHtml(data) {
       </div>
     </section>`;
 
+  function reportIssueRow(it) {
+    const updatedDay = it.updated_at
+      ? new Date(it.updated_at).toISOString().slice(0, 10)
+      : "-";
+    return `
+      <tr>
+        <td class="repo">${escapeHtml(it.repo)}</td>
+        <td class="title"><a href="${escapeHtml(
+          it.url
+        )}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+      it.title
+    )}</a></td>
+        <td>${escapeHtml(updatedDay)}</td>
+        <td>${escapeHtml(it.prState || "none")}</td>
+      </tr>`;
+  }
+
+  const contributorList =
+    contributors.length > 0
+      ? contributors
+          .map((name) => `<span class="report-pill">${escapeHtml(name)}</span>`)
+          .join("")
+      : `<span class="muted">No PR references found yet.</span>`;
+
+  const maxTierCount = Math.max(
+    1,
+    ...tierOrder.map((t) => rewardAgg.byTier[t].count || 0)
+  );
+  const rewardTierRows = tierOrder
+    .map((tier) => {
+      const agg = rewardAgg.byTier[tier];
+      const pct = ((agg.count || 0) / maxTierCount) * 100;
+      return `
+        <tr>
+          <td>${tierLabel(tier)}</td>
+          <td class="num">${agg.count}</td>
+          <td class="num">${fmtUsd(agg.usd)}</td>
+          <td class="num">${fmtG(agg.g)}</td>
+          <td>
+            <div class="report-bar">
+              <span style="width:${pct.toFixed(2)}%"></span>
+            </div>
+          </td>
+        </tr>`;
+    })
+    .join("");
+
+  const contributorRewardRows = contributorEntries
+    .map(
+      (entry) => `
+        <tr>
+          <td>${escapeHtml(entry.name)}</td>
+          <td class="num">${entry.tickets.length}</td>
+          <td class="num">${entry.rewards.count}</td>
+          <td class="num">${fmtUsd(entry.rewards.usd)}</td>
+          <td class="num">${fmtG(entry.rewards.g)}</td>
+        </tr>`
+    )
+    .join("");
+
+  const contributorTicketBlocks = contributorEntries
+    .map((entry) => {
+      const items = entry.tickets
+        .slice()
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      const listItems = items
+        .map((it) => {
+          const updated = it.updated_at
+            ? new Date(it.updated_at).toISOString().slice(0, 10)
+            : "-";
+          const prState = it.prState || "none";
+          return `
+            <li>
+              <span class="ticket-repo">${escapeHtml(it.repo)}</span>
+              <a href="${escapeHtml(
+                it.url
+              )}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+            it.title
+          )}</a>
+              <span class="ticket-meta">${escapeHtml(
+                it.state
+              )} · pr: ${escapeHtml(prState)} · ${escapeHtml(updated)}</span>
+            </li>`;
+        })
+        .join("");
+      return `
+        <div class="report-ticket-block">
+          <h4>${escapeHtml(entry.name)} <span class="muted">(${items.length})</span></h4>
+          <ul class="report-ticket-list">
+            ${
+              listItems ||
+              `<li class="muted">No referenced tickets.</li>`
+            }
+          </ul>
+        </div>`;
+    })
+    .join("");
+
+  const inProgressRows = inProgressItems.map(reportIssueRow).join("");
+  const inProgressTable = `
+    <section class="report-section">
+      <h3>Tickets Still In Progress</h3>
+      <div class="report-subtext">Open issues with no merged PR.</div>
+      <div class="table-wrap report-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Repo</th>
+              <th>Title</th>
+              <th>Updated</th>
+              <th>PR State</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${
+              inProgressRows ||
+              `<tr><td colspan="4" class="empty">No open in-progress issues.</td></tr>`
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>`;
+
+  const reportHtml = `
+    <div class="report-card" role="dialog" aria-modal="true" aria-labelledby="report-title">
+      <div class="report-header">
+        <div>
+          <div class="report-kicker">Scout Issues Report</div>
+          <h2 id="report-title">Overview</h2>
+          <div class="report-meta">
+            <span>Org: ${escapeHtml(ORG)}</span>
+            <span>Since: ${escapeHtml(data.since)}</span>
+            <span>Label: ${escapeHtml(data.labelContains)}</span>
+            <span>Generated: ${escapeHtml(data.generated_at)}</span>
+          </div>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" id="report-print" type="button">Download PDF</button>
+          <button class="report-btn ghost" id="report-close" type="button">Close</button>
+        </div>
+      </div>
+      <section class="report-section">
+        <div class="report-grid">
+          <div class="report-metric">
+            <div class="report-metric-label">Contributors Participated</div>
+            <div class="report-metric-value">${contributors.length}</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Tickets Closed</div>
+            <div class="report-metric-value">${ticketsClosedCount}</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Rewards Distributed</div>
+            <div class="report-metric-value">${fmtUsd(
+              rewardAgg.total.usd
+            )} | ${fmtG(rewardAgg.total.g)}</div>
+            <div class="report-metric-subtext">${rewardAgg.total.count} eligible tickets</div>
+          </div>
+          <div class="report-metric">
+            <div class="report-metric-label">Open In Progress</div>
+            <div class="report-metric-value">${inProgressItems.length}</div>
+          </div>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Contributors Participated</h3>
+        <div class="report-subtext">Based on PR reference authors.</div>
+        <div class="report-pill-wrap">${contributorList}</div>
+      </section>
+      <section class="report-section">
+        <h3>Rewards Distributed</h3>
+        <div class="report-subtext">Merged PRs or closed issues with connected PRs. Unlabeled defaults to Basic.</div>
+        <div class="table-wrap report-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Tickets</th>
+                <th>USD</th>
+                <th>G$</th>
+                <th>Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rewardTierRows}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Contributor Rewards</h3>
+        <div class="report-subtext">Attribution uses the last PR reference author per ticket. Contributors excluded: L03TJ3, sirpy.</div>
+        <div class="table-wrap report-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Contributor</th>
+                <th>Tickets</th>
+                <th>Rewarded Tickets</th>
+                <th>USD</th>
+                <th>G$</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${
+                contributorRewardRows ||
+                `<tr><td colspan="5" class="empty">No contributor rewards available.</td></tr>`
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="report-section">
+        <h3>Tickets Picked Up</h3>
+        <div class="report-subtext">All referenced tickets, grouped by contributor.</div>
+        <div class="report-ticket-grid">
+          ${
+            contributorTicketBlocks ||
+            `<div class="muted">No contributor ticket assignments found.</div>`
+          }
+        </div>
+      </section>
+      ${inProgressTable}
+    </div>`;
+
   const css = `
     :root { --bg:#0b1220; --card:#121a2a; --text:#e6edf3; --muted:#9fb1c1; --accent:#60a5fa; --border:#20304a; --label:#1f2937; --open:#16a34a; --closed:#dc2626; }
     * { box-sizing: border-box; }
@@ -695,6 +1003,50 @@ function buildHtml(data) {
     footer { text-align: center; color: var(--muted); padding: 24px 12px; }
     .screen { display: none; }
     .screen.active { display: block; }
+    .header-actions { margin-top: 10px; }
+    .report-btn { background: var(--accent); color: #0b1220; border: 1px solid var(--accent); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .report-btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    .report-modal { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.72); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 30; }
+    .report-modal.active { display: flex; }
+    .report-card { width: min(920px, 100%); max-height: 90vh; overflow: auto; background: #ffffff; color: #111827; border-radius: 16px; padding: 24px; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+    .report-header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; margin-bottom: 16px; }
+    .report-kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; color: #6b7280; }
+    .report-meta { display: flex; flex-wrap: wrap; gap: 10px 16px; color: #6b7280; font-size: 12px; margin-top: 6px; }
+    .report-actions { display: flex; gap: 8px; align-items: flex-start; }
+    .report-section { margin: 18px 0; }
+    .report-section h3 { margin: 0 0 6px; font-size: 14px; color: #111827; }
+    .report-subtext { color: #6b7280; font-size: 12px; margin-bottom: 10px; }
+    .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .report-metric { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #f9fafb; }
+    .report-metric-label { color: #6b7280; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .report-metric-value { font-size: 18px; font-weight: 700; margin-top: 6px; }
+    .report-metric-subtext { color: #6b7280; font-size: 12px; margin-top: 4px; }
+    .report-pill-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+    .report-pill { background: #e5e7eb; color: #111827; border-radius: 999px; padding: 4px 8px; font-size: 12px; }
+    .report-table table { border-collapse: collapse; width: 100%; }
+    .report-table th { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+    .report-table td { padding: 8px 10px; border-bottom: 1px solid #f3f4f6; }
+    .report-table a { color: inherit; text-decoration: none; }
+    .report-table a:hover { text-decoration: underline; }
+    .report-bar { width: 120px; height: 8px; background: #e5e7eb; border-radius: 999px; overflow: hidden; }
+    .report-bar span { display: block; height: 100%; background: #2563eb; border-radius: inherit; }
+    .report-ticket-grid { display: grid; gap: 12px; }
+    .report-ticket-block { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #f9fafb; }
+    .report-ticket-block h4 { margin: 0 0 8px; font-size: 13px; color: #111827; }
+    .report-ticket-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    .report-ticket-list li { display: grid; gap: 2px; }
+    .report-ticket-list a { color: #111827; text-decoration: none; }
+    .report-ticket-list a:hover { text-decoration: underline; }
+    .ticket-repo { font-size: 12px; color: #6b7280; }
+    .ticket-meta { font-size: 11px; color: #6b7280; }
+    body.report-open { overflow: hidden; }
+    @media print {
+      body { background: #ffffff; color: #111827; }
+      header, main, footer { display: none !important; }
+      body.report-open .report-modal { position: static; inset: auto; padding: 0; background: none; display: block !important; }
+      .report-card { box-shadow: none; border-radius: 0; padding: 0; max-height: none; }
+      .report-actions { display: none !important; }
+    }
   `;
 
   const script = `
@@ -706,6 +1058,28 @@ function buildHtml(data) {
       const target = btn.getAttribute('data-tab');
       screens.forEach(sc => sc.classList.toggle('active', sc.id === target));
     }));
+    const reportBtn = document.getElementById('report-btn');
+    const reportModal = document.getElementById('report-modal');
+    const reportClose = document.getElementById('report-close');
+    const reportPrint = document.getElementById('report-print');
+    if (reportBtn && reportModal) {
+      const openReport = () => {
+        reportModal.classList.add('active');
+        document.body.classList.add('report-open');
+        reportModal.setAttribute('aria-hidden', 'false');
+      };
+      const closeReport = () => {
+        reportModal.classList.remove('active');
+        document.body.classList.remove('report-open');
+        reportModal.setAttribute('aria-hidden', 'true');
+      };
+      reportBtn.addEventListener('click', openReport);
+      reportClose && reportClose.addEventListener('click', closeReport);
+      reportModal.addEventListener('click', (e) => {
+        if (e.target === reportModal) closeReport();
+      });
+      reportPrint && reportPrint.addEventListener('click', () => window.print());
+    }
   `;
 
   const byRepoView =
@@ -741,6 +1115,9 @@ function buildHtml(data) {
       <footer>Generated from GitHub Search API • ${escapeHtml(
         new Date().toLocaleString()
       )}</footer>
+      <div id="report-modal" class="report-modal" aria-hidden="true">
+        ${reportHtml}
+      </div>
       <script>${script}</script>
     </body>
   </html>`;
