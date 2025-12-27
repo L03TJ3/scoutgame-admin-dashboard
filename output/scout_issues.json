@@ -3,7 +3,7 @@
   "since": "2023-01-01",
   "labelContains": "scouts",
   "total": 31,
-  "generated_at": "2025-12-12T09:38:18.265Z",
+  "generated_at": "2025-12-27T03:34:11.356Z",
   "byRepo": {
     "GoodDollar/GoodProtocolUI": [
       {
@@ -61,13 +61,13 @@
         "repo": "GoodDollar/GoodProtocolUI",
         "number": 593,
         "title": "[Feat] Integrate with reown appkit",
-        "state": "open",
+        "state": "closed",
         "author": "sirpy",
         "labels": [
           "Scouts Game - Epic"
         ],
         "created_at": "2025-02-10T09:03:22Z",
-        "updated_at": "2025-09-01T09:43:45Z",
+        "updated_at": "2025-12-16T17:10:51Z",
         "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/593",
         "bounty": {
           "tier": "epic",
@@ -82,7 +82,7 @@
           "pbkompasz",
           "vortex-hue"
         ],
-        "prState": "open"
+        "prState": "merged"
       },
       {
         "repo": "GoodDollar/GoodProtocolUI",
@@ -145,13 +145,13 @@
         "repo": "GoodDollar/GoodCollective",
         "number": 308,
         "title": "Pool Members should be able to join pools and claim their rewards",
-        "state": "closed",
+        "state": "open",
         "author": "L03TJ3",
         "labels": [
           "Scouts Game - Rare"
         ],
         "created_at": "2025-11-21T04:21:41Z",
-        "updated_at": "2025-11-27T12:26:17Z",
+        "updated_at": "2025-12-15T04:59:46Z",
         "url": "https://github.com/GoodDollar/GoodCollective/issues/308",
         "bounty": {
           "tier": "rare",
@@ -195,13 +195,13 @@
         "repo": "GoodDollar/GoodCollective",
         "number": 280,
         "title": "Feature: Manage community pool UI",
-        "state": "closed",
+        "state": "open",
         "author": "L03TJ3",
         "labels": [
           "Scouts Game - Mythic"
         ],
         "created_at": "2025-01-07T15:23:38Z",
-        "updated_at": "2025-12-12T09:35:41Z",
+        "updated_at": "2025-12-15T04:10:18Z",
         "url": "https://github.com/GoodDollar/GoodCollective/issues/280",
         "bounty": {
           "tier": "mythic",
@@ -644,8 +644,10 @@
         "labelAddedBy": "L03TJ3",
         "commentsCount": 2,
         "lastCommentAt": "2025-12-12T09:16:27Z",
-        "prRefAuthors": [],
-        "prState": "none"
+        "prRefAuthors": [
+          "EmekaManuel"
+        ],
+        "prState": "open"
       },
       {
         "repo": "GoodDollar/GoodWeb3-Mono",
@@ -859,8 +861,10 @@
       "labelAddedBy": "L03TJ3",
       "commentsCount": 2,
       "lastCommentAt": "2025-12-12T09:16:27Z",
-      "prRefAuthors": [],
-      "prState": "none"
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "open"
     },
     {
       "repo": "GoodDollar/GoodCollective",
@@ -965,33 +969,6 @@
       "prState": "open"
     },
     {
-      "repo": "GoodDollar/GoodProtocolUI",
-      "number": 593,
-      "title": "[Feat] Integrate with reown appkit",
-      "state": "open",
-      "author": "sirpy",
-      "labels": [
-        "Scouts Game - Epic"
-      ],
-      "created_at": "2025-02-10T09:03:22Z",
-      "updated_at": "2025-09-01T09:43:45Z",
-      "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/593",
-      "bounty": {
-        "tier": "epic",
-        "usd": 250,
-        "g": 2500000
-      },
-      "labelAddedAt": "2025-02-10T09:03:22Z",
-      "labelAddedBy": "sirpy",
-      "commentsCount": 15,
-      "lastCommentAt": "2025-09-01T09:43:44Z",
-      "prRefAuthors": [
-        "pbkompasz",
-        "vortex-hue"
-      ],
-      "prState": "open"
-    },
-    {
       "repo": "GoodDollar/GoodSDKs",
       "number": 10,
       "title": "Add Farcaster support for the identity flow",
@@ -1047,16 +1024,69 @@
   ],
   "closedItems": [
     {
+      "repo": "GoodDollar/GoodProtocolUI",
+      "number": 593,
+      "title": "[Feat] Integrate with reown appkit",
+      "state": "closed",
+      "author": "sirpy",
+      "labels": [
+        "Scouts Game - Epic"
+      ],
+      "created_at": "2025-02-10T09:03:22Z",
+      "updated_at": "2025-12-16T17:10:51Z",
+      "url": "https://github.com/GoodDollar/GoodProtocolUI/issues/593",
+      "bounty": {
+        "tier": "epic",
+        "usd": 250,
+        "g": 2500000
+      },
+      "labelAddedAt": "2025-02-10T09:03:22Z",
+      "labelAddedBy": "sirpy",
+      "commentsCount": 15,
+      "lastCommentAt": "2025-09-01T09:43:44Z",
+      "prRefAuthors": [
+        "pbkompasz",
+        "vortex-hue"
+      ],
+      "prState": "merged"
+    },
+    {
+      "repo": "GoodDollar/GoodCollective",
+      "number": 308,
+      "title": "Pool Members should be able to join pools and claim their rewards",
+      "state": "open",
+      "author": "L03TJ3",
+      "labels": [
+        "Scouts Game - Rare"
+      ],
+      "created_at": "2025-11-21T04:21:41Z",
+      "updated_at": "2025-12-15T04:59:46Z",
+      "url": "https://github.com/GoodDollar/GoodCollective/issues/308",
+      "bounty": {
+        "tier": "rare",
+        "usd": 150,
+        "g": 1500000
+      },
+      "labelAddedAt": "2025-11-21T04:21:42Z",
+      "labelAddedBy": "L03TJ3",
+      "commentsCount": 3,
+      "lastCommentAt": "2025-11-25T20:31:16Z",
+      "prRefAuthors": [
+        "EmekaManuel"
+      ],
+      "prState": "merged"
+    },
+    {
       "repo": "GoodDollar/GoodCollective",
       "number": 280,
       "title": "Feature: Manage community pool UI",
-      "state": "closed",
+      "state": "open",
       "author": "L03TJ3",
       "labels": [
         "Scouts Game - Mythic"
       ],
       "created_at": "2025-01-07T15:23:38Z",
-      "updated_at": "2025-12-12T09:35:41Z",
+      "updated_at": "2025-12-15T04:10:18Z",
       "url": "https://github.com/GoodDollar/GoodCollective/issues/280",
       "bounty": {
         "tier": "mythic",
@@ -1121,32 +1151,6 @@
       "lastCommentAt": "2025-08-11T07:13:09Z",
       "prRefAuthors": [
         "harjaapdhillon16"
-      ],
-      "prState": "merged"
-    },
-    {
-      "repo": "GoodDollar/GoodCollective",
-      "number": 308,
-      "title": "Pool Members should be able to join pools and claim their rewards",
-      "state": "closed",
-      "author": "L03TJ3",
-      "labels": [
-        "Scouts Game - Rare"
-      ],
-      "created_at": "2025-11-21T04:21:41Z",
-      "updated_at": "2025-11-27T12:26:17Z",
-      "url": "https://github.com/GoodDollar/GoodCollective/issues/308",
-      "bounty": {
-        "tier": "rare",
-        "usd": 150,
-        "g": 1500000
-      },
-      "labelAddedAt": "2025-11-21T04:21:42Z",
-      "labelAddedBy": "L03TJ3",
-      "commentsCount": 3,
-      "lastCommentAt": "2025-11-25T20:31:16Z",
-      "prRefAuthors": [
-        "EmekaManuel"
       ],
       "prState": "merged"
     },
@@ -1673,7 +1677,7 @@
         "Future Scouts Game"
       ],
       "created_at": "2025-12-09T13:05:14Z",
-      "updated_at": "2025-12-09T13:05:49Z",
+      "updated_at": "2025-12-17T16:22:28Z",
       "url": "https://github.com/GoodDollar/GoodSDKs/issues/23",
       "bounty": {
         "tier": null,
@@ -1682,8 +1686,8 @@
       },
       "labelAddedAt": "2025-12-09T13:05:49Z",
       "labelAddedBy": "L03TJ3",
-      "commentsCount": 0,
-      "lastCommentAt": null,
+      "commentsCount": 1,
+      "lastCommentAt": "2025-12-14T11:19:48Z",
       "prRefAuthors": [],
       "prState": "none"
     },
@@ -1965,27 +1969,27 @@
   "aggregates": {
     "overall": {
       "open": {
-        "count": 8,
-        "usd": 1250,
-        "g": 12500000
+        "count": 7,
+        "usd": 1000,
+        "g": 10000000
       },
       "closed": {
-        "count": 23,
-        "usd": 2650,
-        "g": 26500000
+        "count": 24,
+        "usd": 2900,
+        "g": 29000000
       }
     },
     "byRepo": {
       "GoodDollar/GoodProtocolUI": {
         "open": {
-          "count": 3,
-          "usd": 325,
-          "g": 3250000
+          "count": 2,
+          "usd": 75,
+          "g": 750000
         },
         "closed": {
-          "count": 2,
-          "usd": 200,
-          "g": 2000000
+          "count": 3,
+          "usd": 450,
+          "g": 4500000
         }
       },
       "GoodDollar/GoodCollective": {

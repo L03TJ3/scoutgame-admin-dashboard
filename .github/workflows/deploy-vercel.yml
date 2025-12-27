@@ -2,7 +2,7 @@ name: Build and Deploy to Vercel
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -40,4 +40,3 @@ jobs:
           vercel-args: --prod
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-
